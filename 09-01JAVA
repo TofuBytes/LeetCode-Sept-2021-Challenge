@@ -1,0 +1,29 @@
+class Solution {
+    public int arrayNesting(int[] nums) {
+        int most = 0;
+        //creat set to keep track of accesed values
+        HashSet<Integer> set = new HashSet<Integer>();
+        
+        //loop through nums
+        for(int x = 0; x < nums.length; x++){
+            int val = nums[x]; 
+            int curr = 0;
+            boolean same = false;
+            
+            //loop through set and ignore values that were accessed already
+            while(!same){
+                if(set.contains(val)){
+                   same = true;;
+                }
+                else{
+                    set.add(val);
+                    val = nums[val];
+                    curr++;
+                }
+            }
+            //update length
+            most = Math.max(most,curr);
+        }
+        return most; 
+    }
+}
